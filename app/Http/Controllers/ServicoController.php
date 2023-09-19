@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 class ServicoController extends Controller
 {
     public function store(ServicoFormRequest $request){
-        $usuario = servico::create([
+        $servico = servico::create([
             'nome' => $request->nome,
             'descricao' => $request->descricao,
             'duracao'=>$request->duracao,
@@ -18,18 +18,18 @@ class ServicoController extends Controller
 
         return response()->json([
             "succes" => true,
-            "message" =>"Usuario Cadastrado com sucesso",
-            "data" => $usuario
+            "message" =>"Serviço Cadastrado com sucesso",
+            "data" => $servico
         ],200);
     }
 
     public function pesquisarPorNome(Request $request){
-        $usuarios = Servico::where('nome', 'like', '%'. $request->nome . '%')->get();
+        $servicos = Servico::where('nome', 'like', '%'. $request->nome . '%')->get();
     
-        if(count($usuarios)>0){
+        if(count($servicos)>0){
             return response()->json([
                 'status'=>true,
-                'data'=> $usuarios
+                'data'=> $servicos
             ]);
         }
         
@@ -42,12 +42,12 @@ class ServicoController extends Controller
 
 
     public function pesquisarPorDescricao(Request $request){
-        $usuarios = servico::where('descricao', 'like', '%'. $request->descricao . '%')->get();
+        $servicos = servico::where('descricao', 'like', '%'. $request->descricao . '%')->get();
     
-        if(count($usuarios)>0){
+        if(count($servicos)>0){
             return response()->json([
                 'status'=>true,
-                'data'=> $usuarios
+                'data'=> $servicos
             ]);
         }
         
@@ -59,9 +59,9 @@ class ServicoController extends Controller
     }
 
     public function update(Request $request){
-        $usuario = servico::find($request->id);
+        $servico = servico::find($request->id);
     
-        if(!isset($usuario)){
+        if(!isset($servico)){
             return response()->json([
                 'status' => false,
                 'message' => "Cadastro não encontrado"
@@ -69,19 +69,19 @@ class ServicoController extends Controller
         }
     
         if(isset($request->nome)){
-            $usuario->nome = $request->nome;
+            $servico->nome = $request->nome;
         }
         if(isset($request->descricao)){
-            $usuario->descricao= $request->descricao;
+            $servico->descricao= $request->descricao;
         }
         if(isset($request->duracao)){
-            $usuario->duracao = $request->duracao;
+            $servico->duracao = $request->duracao;
         }
         if(isset($request->preco)){
-            $usuario->preco = $request->preco;
+            $servico->preco = $request->preco;
         }
     
-        $usuario-> update();
+        $servico-> update();
     
         return response()->json([
             'status' => true,
@@ -91,16 +91,16 @@ class ServicoController extends Controller
     }
 
     public function excluir($id){
-        $usuario = servico::find($id);
+        $servico = servico::find($id);
     
-        if(!isset($usuario)){
+        if(!isset($servico)){
             return response()->json([
                 'status' => false,
                 'message' => "Cadastro não encotrado"
             ]);
         }
     
-        $usuario->delete();
+        $servico->delete();
     
         return response()->json([
             'status' => true,
