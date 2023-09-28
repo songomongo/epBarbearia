@@ -23,11 +23,11 @@ Route::delete('delete/{id}',[ServicoController::class, 'excluir']);
 Route::put('update', [ServicoController::class, 'update']);
 
 //cliente
-Route::post('store',[ClienteController::class,'store']);
-Route::post('nome',[ClienteController::class, 'pesquisarPorNome']);
-Route::post('cpf',[ClienteController::class, 'pesquisarPorCpf']);
-Route::post('celular',[ClienteController::class, 'pesquisarPorCelular']);
-Route::post('email',[ClienteController::class, 'pesquisarPorEmail']);
-Route::delete('delete/{id}',[ClienteController::class, 'excluir']);
-Route::put('update', [ClienteController::class, 'update']);
+Route::post('cadastro',[ClienteController::class,'store']);
+Route::post('procurarN',[ClienteController::class, 'pesquisarPorNome']);
+Route::post('procurarC',[ClienteController::class, 'pesquisarPorCpf']);
+Route::post('procurarCE',[ClienteController::class, 'pesquisarPorCelular']);
+Route::post('procurarE',[ClienteController::class, 'pesquisarPorEmail']);
+Route::delete('excluir/{id}',[ClienteController::class, 'excluir']);
+Route::put('atualizar', [ClienteController::class, 'update']);
 Route::post('esqueciSenha',[ClienteController::class, 'esqueciSenha']);

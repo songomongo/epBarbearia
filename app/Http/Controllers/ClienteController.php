@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\ClientesFormRequest;
 use App\Models\clientes;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class ClienteController extends Controller
 {
@@ -23,7 +24,7 @@ class ClienteController extends Controller
             'bairro'=>$request->bairro,
             'cep'=>$request->cep,
             'complemento'=>$request->complemento,
-            'senha'=>$request->senha,
+            'senha'=>Hash::make($request->senha),
             
         ]);
        
@@ -188,6 +189,7 @@ class ClienteController extends Controller
 
     public function esqueciSenha(Request $request){
         $cliente = clientes::where('cpf', '=', $request->cpf)->first();
+        
 
         if(!isset($cliente)){
             return response()->json([
@@ -196,11 +198,9 @@ class ClienteController extends Controller
             ]);
         }
     
-        if(isset($request->senha)){
-            $cliente->senha = $request->senha;
-        }
+       $cliente->senha=Hash::make($cliente->cpf);
 
-        $cliente-> update();
+        $cliente->update();
     
         return response()->json([
             'status' => true,
