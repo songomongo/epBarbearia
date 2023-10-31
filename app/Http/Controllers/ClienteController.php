@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Hash;
 class ClienteController extends Controller
 {
     public function store(ClientesFormRequest $request){
-        $cliente = clientes::create([
+        $clientes = clientes::create([
             'nome' => $request->nome,
             'celular' => $request->celular,
             'email'=>$request->email,
@@ -31,9 +31,16 @@ class ClienteController extends Controller
         return response()->json([
             "succes" => true,
             "message" =>"Cliente Cadastrado com sucesso",
-            "data" => $cliente
+            "data" => $clientes
         ],200);
     }
+
+    public function retornarTodos(){
+        $clientes = clientes::all();
+         return response()->json([
+             'status'=>true,
+              'data'=> $clientes]);
+     }
 
     public function pesquisarPorNome(Request $request){
         $clientes = clientes::where('nome', 'like', '%'. $request->nome . '%')->get();

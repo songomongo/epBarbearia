@@ -35,7 +35,13 @@ class ProfissionalController extends Controller
             "data" => $profissional
         ],200);
     }
-
+    
+    public function retornarTodos(){
+        $profissional = profissional::all();
+         return response()->json([
+             'status'=>true,
+              'data'=> $profissional]);
+     }
     public function pesquisarPorNome(Request $request){
         $profissional = profissional::where('nome', 'like', '%'. $request->nome . '%')->get();
     
