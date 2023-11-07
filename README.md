@@ -40,7 +40,7 @@ code .
 
 6. Startar as tabelas
 ```
-php artisan serve migrate
+php artisan migrate
 ```
 
 7. Startar o servidor
