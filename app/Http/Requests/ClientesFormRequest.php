@@ -44,7 +44,7 @@ class ClientesFormRequest extends FormRequest
 
     public function failedValidation (Validator $validator){
         throw new HttpResponseException(response()->json([
-            'sucess' => false,
+            'success' => false,
             'error' => $validator->errors()
         ]));
     }

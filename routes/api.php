@@ -34,6 +34,7 @@ Route::post('procurarE',[ClienteController::class, 'pesquisarPorEmail']);
 Route::delete('excluir/{id}',[ClienteController::class, 'excluir']);
 Route::put('atualizar', [ClienteController::class, 'update']);
 Route::post('esqueciSenha',[ClienteController::class, 'esqueciSenha']);
+Route::get('pesquisarPor/{id}', [ClienteController::class, 'pesquisarPorId']);
 
 //profissional
 Route::post('cadastroProfissional',[ProfissionalController::class,'store']);
@@ -44,3 +45,5 @@ Route::post('procurarCEProfissional',[ProfissionalController::class, 'pesquisarP
 Route::post('procurarEProfissional',[ProfissionalController::class, 'pesquisarPorEmail']);
 Route::delete('excluirProfissional/{id}',[ProfissionalController::class, 'excluir']);
 Route::put('atualizarProfissional', [ProfissionalController::class, 'update']);
+
+

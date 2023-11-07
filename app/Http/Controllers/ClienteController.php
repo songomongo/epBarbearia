@@ -29,7 +29,7 @@ class ClienteController extends Controller
         ]);
        
         return response()->json([
-            "succes" => true,
+            "success" => true,
             "message" =>"Cliente Cadastrado com sucesso",
             "data" => $clientes
         ],200);
@@ -41,6 +41,22 @@ class ClienteController extends Controller
              'status'=>true,
               'data'=> $clientes]);
      }
+
+     public function pesquisarPorId($id){
+         $clientes = clientes::find($id);
+         
+         if($clientes == null){
+            return response()->json([
+                'status'=>false,
+                'message'=> "cliente não encontrado"
+           ]);
+        }
+
+           return response()->json([
+            'status'=>true,
+            'data'=> $clientes
+        ]);
+    }
 
     public function pesquisarPorNome(Request $request){
         $clientes = clientes::where('nome', 'like', '%'. $request->nome . '%')->get();
