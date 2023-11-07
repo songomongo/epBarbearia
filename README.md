@@ -37,6 +37,17 @@ copy .env.example .env
 ```
 code .
 ```
+
+6. Startar as tabelas
+```
+php artisan serve migrate
+```
+
+7. Startar o servidor
+```
+php artisan serve 
+```
+
 ## insomnia
 [![Run in Insomnia}](https://insomnia.rest/images/run.svg)](https://insomnia.rest/run/?label=ERAS%20book%20API&uri=https%3A%2F%2Fraw.githubusercontent.com%2FMIMIMINISAIA%2FERASbook-api%2Fmain%2Finsomnia.json%3Ftoken%3DGHSAT0AAAAAACGBYMFUXUORKK3ULPO74DHWZGSEWDQ)
 
