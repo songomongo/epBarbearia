@@ -23,6 +23,8 @@ Route::post('nome',[ServicoController::class, 'pesquisarPorNome']);
 Route::post('descricao',[ServicoController::class, 'pesquisarPorDescricao']);
 Route::delete('delete/{id}',[ServicoController::class, 'excluir']);
 Route::put('update', [ServicoController::class, 'update']);
+Route::get('servicoPesquisarPor/{id}', [ServicoController::class, 'pesquisarPorId']);
+
 
 //cliente
 Route::post('cadastro',[ClienteController::class,'store']);
@@ -45,5 +47,6 @@ Route::post('procurarCEProfissional',[ProfissionalController::class, 'pesquisarP
 Route::post('procurarEProfissional',[ProfissionalController::class, 'pesquisarPorEmail']);
 Route::delete('excluirProfissional/{id}',[ProfissionalController::class, 'excluir']);
 Route::put('atualizarProfissional', [ProfissionalController::class, 'update']);
+Route::get('profissionalPesquisarPor/{id}', [ProfissionalController::class, 'pesquisarPorId']);
 
 

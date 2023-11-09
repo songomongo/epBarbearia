@@ -40,9 +40,9 @@ class ClienteController extends Controller
          return response()->json([
              'status'=>true,
               'data'=> $clientes]);
-     }
+    }
 
-     public function pesquisarPorId($id){
+    public function pesquisarPorId($id){
          $clientes = clientes::find($id);
          
          if($clientes == null){
@@ -179,7 +179,7 @@ class ClienteController extends Controller
             $cliente->complemento = $request->complemento;
         }
         if(isset($request->senha)){
-            $cliente->cpf = $request->senha;
+            $cliente->senha = $request->senha;
         }
         
         $cliente-> update();

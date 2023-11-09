@@ -42,6 +42,22 @@ class ProfissionalController extends Controller
              'status'=>true,
               'data'=> $profissional]);
      }
+
+     public function pesquisarPorId($id){
+        $profissional = profissional::find($id);
+        
+        if($profissional == null){
+           return response()->json([
+               'status'=>false,
+               'message'=> "profissional não encontrado"
+          ]);
+       }
+
+          return response()->json([
+           'status'=>true,
+           'data'=> $profissional
+       ]);
+   }
     public function pesquisarPorNome(Request $request){
         $profissional = profissional::where('nome', 'like', '%'. $request->nome . '%')->get();
     
@@ -161,7 +177,7 @@ class ProfissionalController extends Controller
                 $profissional->complemento = $request->complemento;
             }
             if(isset($request->senha)){
-                $profissional->cpf = $request->senha;
+                $profissional->senha = $request->senha;
             }
             if(isset($request->salario)){
                 $profissional->salario = $request->salario;
