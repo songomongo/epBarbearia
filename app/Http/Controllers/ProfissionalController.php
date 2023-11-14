@@ -6,6 +6,7 @@ use App\Http\Requests\ProfissionalFormRequest;
 use App\Models\profissional;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Response;
 
 class ProfissionalController extends Controller
 {
@@ -208,6 +209,34 @@ class ProfissionalController extends Controller
                 'status' => true,
                 'message' => "Cadastro excluido com sucesso"
             ]);
+        }
+
+        public function exportarCsv(){
+            $profissionals = profissional::all();
+           
+            $nomeArquivo = 'profissionals.csv';
+        
+            $filePath = storage_path('app/public/'. $nomeArquivo);
+        
+            $handle = fopen($filePath, "w");
+            
+            fputcsv($handle, array('nome', 'E-mail', 'cpf', 'celular', ), ';');
+        
+            foreach($profissionals as $u){
+                fputcsv($handle, array(
+                    $u->nome,
+                    $u->email,
+                    $u->cpf,
+                    $u->celular,
+                   
+                ), ';');
+            }
+        
+            fclose($handle);
+        
+            return Response::download(public_path().'/storage/'.$nomeArquivo)
+            ->deleteFileAfterSend(true);
+        
         }
 
 }

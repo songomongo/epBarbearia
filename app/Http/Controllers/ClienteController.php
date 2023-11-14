@@ -6,6 +6,7 @@ use App\Http\Requests\ClientesFormRequest;
 use App\Models\clientes;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Response;
 
 class ClienteController extends Controller
 {
@@ -231,6 +232,34 @@ class ClienteController extends Controller
         ]);
     
         
+    }
+
+    public function exportarCsv(){
+        $clientes = clientes::all();
+       
+        $nomeArquivo = 'clientes.csv';
+    
+        $filePath = storage_path('app/public/'. $nomeArquivo);
+    
+        $handle = fopen($filePath, "w");
+        
+        fputcsv($handle, array('nome', 'E-mail', 'cpf', 'celular', ), ';');
+    
+        foreach($clientes as $u){
+            fputcsv($handle, array(
+                $u->nome,
+                $u->email,
+                $u->cpf,
+                $u->celular,
+               
+            ), ';');
+        }
+    
+        fclose($handle);
+    
+        return Response::download(public_path().'/storage/'.$nomeArquivo)
+        ->deleteFileAfterSend(true);
+    
     }
 
 }
