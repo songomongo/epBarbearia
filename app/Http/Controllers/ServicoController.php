@@ -9,156 +9,159 @@ use Illuminate\Support\Facades\Response;
 
 class ServicoController extends Controller
 {
-    public function store(Request $request){
+    public function store(Request $request)
+    {
         $servicos = servico::create([
             'nome' => $request->nome,
             'descricao' => $request->descricao,
-            'duracao'=>$request->duracao,
-            'preco'=>$request->preco,
+            'duracao' => $request->duracao,
+            'preco' => $request->preco,
         ]);
 
         return response()->json([
             "succes" => true,
-            "message" =>"Serviço Cadastrado com sucesso",
+            "message" => "Serviço Cadastrado com sucesso",
             "data" => $servicos
-        ],200);
+        ], 200);
     }
 
-    public function retornarTodos(){
+    public function retornarTodos()
+    {
         $servicos = servico::all();
-         return response()->json([
-             'status'=>true,
-              'data'=> $servicos]);
-     }
+        return response()->json([
+            'status' => true,
+            'data' => $servicos
+        ]);
+    }
 
-     public function pesquisarPorId($id){
+    public function pesquisarPorId($id)
+    {
         $servicos = servico::find($id);
-        
-        if($servicos == null){
-           return response()->json([
-               'status'=>false,
-               'message'=> "serviço não encontrado"
-          ]);
-       }
 
-          return response()->json([
-           'status'=>true,
-           'data'=> $servicos
-       ]);
-   }
-
-    public function pesquisarPorNome(Request $request){
-        $servicos = Servico::where('nome', 'like', '%'. $request->nome . '%')->get();
-    
-        if(count($servicos)>0){
+        if ($servicos == null) {
             return response()->json([
-                'status'=>true,
-                'data'=> $servicos
+                'status' => false,
+                'message' => "serviço não encontrado"
             ]);
         }
-        
+
         return response()->json([
-            'status'=>false,
-             'data'=> 'Não há resultados para a pesquisa.'
+            'status' => true,
+            'data' => $servicos
+        ]);
+    }
+
+    public function pesquisarPorNome(Request $request)
+    {
+        $servicos = Servico::where('nome', 'like', '%' . $request->nome . '%')->get();
+
+        if (count($servicos) > 0) {
+            return response()->json([
+                'status' => true,
+                'data' => $servicos
             ]);
-    
+        }
+
+        return response()->json([
+            'status' => false,
+            'data' => 'Não há resultados para a pesquisa.'
+        ]);
     }
 
 
-    public function pesquisarPorDescricao(Request $request){
-        $servicos = servico::where('descricao', 'like', '%'. $request->descricao . '%')->get();
-    
-        if(count($servicos)>0){
+    public function pesquisarPorDescricao(Request $request)
+    {
+        $servicos = servico::where('descricao', 'like', '%' . $request->descricao . '%')->get();
+
+        if (count($servicos) > 0) {
             return response()->json([
-                'status'=>true,
-                'data'=> $servicos
+                'status' => true,
+                'data' => $servicos
             ]);
         }
-        
+
         return response()->json([
-            'status'=>false,
-             'data'=> 'Não há resultados para a pesquisa.'
-            ]);
-    
+            'status' => false,
+            'data' => 'Não há resultados para a pesquisa.'
+        ]);
     }
 
-    public function update(Request $request){
+    public function update(Request $request)
+    {
         $servicos = servico::find($request->id);
-    
-        if(!isset($servicos)){
+
+        if (!isset($servicos)) {
             return response()->json([
                 'status' => false,
                 'message' => "Cadastro não encontrado"
             ]);
         }
-    
-        if(isset($request->nome)){
+
+        if (isset($request->nome)) {
             $servicos->nome = $request->nome;
         }
-        if(isset($request->descricao)){
-            $servicos->descricao= $request->descricao;
+        if (isset($request->descricao)) {
+            $servicos->descricao = $request->descricao;
         }
-        if(isset($request->duracao)){
+        if (isset($request->duracao)) {
             $servicos->duracao = $request->duracao;
         }
-        if(isset($request->preco)){
+        if (isset($request->preco)) {
             $servicos->preco = $request->preco;
         }
-    
-        $servicos-> update();
-    
+
+        $servicos->update();
+
         return response()->json([
             'status' => true,
             'message' => "Cadastro atualizado"
         ]);
-    
     }
 
-    public function excluir($id){
+    public function excluir($id)
+    {
         $servicos = servico::find($id);
-    
-        if(!isset($servicos)){
+
+        if (!isset($servicos)) {
             return response()->json([
                 'status' => false,
                 'message' => "Cadastro não encotrado"
             ]);
         }
-    
+
         $servicos->delete();
-    
+
         return response()->json([
             'status' => true,
             'message' => "Cadastro excluido com sucesso"
         ]);
     }
 
-    public function exportarCsv(){
+    public function exportarCsv()
+    {
         $servicos = servico::all();
-       
+
         $nomeArquivo = 'servicos.csv';
-    
-        $filePath = storage_path('app/public/'. $nomeArquivo);
-    
+
+        $filePath = storage_path('app/public/' . $nomeArquivo);
+
         $handle = fopen($filePath, "w");
-        
-        fputcsv($handle, array('nome', 'E-mail', 'cpf', 'celular', ), ';');
-    
-        foreach($servicos as $u){
+
+        fputcsv($handle, array('nome', 'E-mail', 'cpf', 'celular',), ';');
+
+        foreach ($servicos as $u) {
             fputcsv($handle, array(
                 $u->nome,
                 $u->email,
                 $u->cpf,
                 $u->celular,
-               
+
             ), ';');
         }
-    
-        fclose($handle);
-    
-        return Response::download(public_path().'/storage/'.$nomeArquivo)
-        ->deleteFileAfterSend(true);
-    
-    }
 
-  
+        fclose($handle);
+
+        return Response::download(public_path() . '/storage/' . $nomeArquivo)
+            ->deleteFileAfterSend(true);
+    }
 }

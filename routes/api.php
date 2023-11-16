@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\agendaController;
 use App\Http\Controllers\ClienteController;
 use App\Http\Controllers\ProfissionalController;
 use App\Http\Controllers\ServicoController;
@@ -51,5 +52,17 @@ Route::delete('excluirProfissional/{id}',[ProfissionalController::class, 'exclui
 Route::put('atualizarProfissional', [ProfissionalController::class, 'update']);
 Route::get('profissionalPesquisarPor/{id}', [ProfissionalController::class, 'pesquisarPorId']);
 Route::get('profissionalExportar/csv', [ProfissionalController::class, 'exportarCsv']);
+
+//agenda
+Route::post('cadastroAgenda', [agendaController::class, 'store']);
+Route::post('procurarAgenda',[agendaController::class, 'pesquisarPorAgenda']);
+Route::delete('excluirAgenda/{id}',[agendaController::class, 'excluir']);
+Route::put('atualizarAgenda', [agendaController::class, 'update']);
+Route::get('retornarTodosAgenda',[agendaController::class, 'retornarTodos']);
+
+
+
+
+
 
 

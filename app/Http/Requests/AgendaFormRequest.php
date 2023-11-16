@@ -25,11 +25,11 @@ class AgendaFormRequest extends FormRequest
     {
         return [
             'profissional_id' => 'required',
-            'cliente_id' => 'required',
-            'servico_id'=> 'required',
+            'cliente_id' => '',
+            'servico_id'=> '',
             'data_hora'=>'required|date',
-            'tipo_pagamento'=>'required|max:20|min:3',
-            'valor'=>'required|decimal:2',
+            'tipo_pagamento'=>'|max:20|min:3',
+            'valor'=>'decimal:2',
             
            
         ];
@@ -45,14 +45,10 @@ class AgendaFormRequest extends FormRequest
     public Function messages(){
         return [
             'profissional_id.required'=> 'O campo profissional é obrigatorio',
-            'cliente_id.required' =>'cliente obrigatoria',
-            'servico_id.required' =>'servico obrigatoria',
             'data_hora.required' =>'cliente obrigatoria',
             'data_hora.date' => 'Formato invalido',
-            'tipo_pagamento.required' =>'tipo pagamento obrigatoria',
             'tipo_pagamento.max' => 'o campo nome deve conter no maximo 20 caracteres',
             'tipo_pagamento.min' => 'o campo nome dever conter no minimo 3 caracteres',
-            'valor.required' =>'valor obrigatoria',
            'valor.decimal:2'=> 'formato invalido'
            
         ];

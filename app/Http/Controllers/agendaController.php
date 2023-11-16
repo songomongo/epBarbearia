@@ -12,7 +12,7 @@ class agendaController extends Controller
         $agendas = Agenda::create([
             'profissional_id' => $request->profissional_id,
             'agenda_id' => $request->agenda_id,
-            'servico_id'=>$request->agenda_id,
+            'servico_id'=>$request->servico_id,
             'data_hora'=>$request->data_hora,
             'tipo_pagamento'=>$request->tipo_pagamento,
             'valor'=>$request->valor,
@@ -27,26 +27,20 @@ class agendaController extends Controller
         ],200);
     }
 
-    public function pesquisarPorNome(Request $request){
-        $agendas = Agenda::where('agenda_id', 'like', '%'. $request->agenda_id . '%')->get();
-    
-        if(count($agendas)>0){
-            return response()->json([
-                'status'=>true,
-                'data'=> $agendas
-            ]);
-        }
-        
+    public function retornarTodos()
+    {
+        $agendas = Agenda::all();
         return response()->json([
-            'status'=>false,
-             'data'=> 'Não há resultados para a pesquisa.'
-            ]);
-    
+            'status' => true,
+            'data' => $agendas
+        ]);
     }
 
+   
+
     
-    public function pesquisarPorData(Request $request){
-        $agendas = Agenda::where('data_hora', 'like', '%'. $request->data_hora . '%')->get();
+    public function pesquisarPorAgenda(Request $request){
+        $agendas = Agenda::where('data_hora', '>=', $request->data_hora)->where('profissional_id', '=',  $request->profissional_id)->get();
     
         if(count($agendas)>0){
             return response()->json([
@@ -91,17 +85,24 @@ class agendaController extends Controller
         }
     
         if(isset($request->profissional_id)){
-            $agendas->profissional_id = $request->nome;
+            $agendas->profissional_id = $request->profissional_id;
         }
-        if(isset($request->descricao)){
-            $agendas->descricao= $request->descricao;
+        if(isset($request->agenda_id)){
+            $agendas->agenda_id= $request->agenda_id;
         }
-        if(isset($request->duracao)){
-            $agendas->duracao = $request->duracao;
+        if(isset($request->servico_id)){
+            $agendas->servico_id = $request->servico_id;
         }
-        if(isset($request->preco)){
-            $agendas->preco = $request->preco;
+        if(isset($request->data_hora)){
+            $agendas->data_hora = $request->data_hora;
         }
+        if(isset($request->tipo_pagamento)){
+            $agendas->tipo_pagamento = $request->tipo_pagamento;
+        }
+        if(isset($request->valor)){
+            $agendas->valor = $request->valor;
+        }
+    
     
         $agendas-> update();
     
