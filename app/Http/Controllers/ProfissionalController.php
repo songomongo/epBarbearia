@@ -190,7 +190,7 @@ class ProfissionalController extends Controller
                 'message' => "Cadastro atualizado"
             ]);
         
-        }
+    }
     
     
         public function excluir($id){
@@ -238,5 +238,25 @@ class ProfissionalController extends Controller
             ->deleteFileAfterSend(true);
         
         }
+
+        public function esqueciSenha(Request $request)
+        {
+            $profissionals = profissional::where('cpf', '=',$request->cpf)->where('email', '=',$request->email)->first();
+    
+            if (isset($profissionals)) {
+                $profissionals->senha = Hash::make($profissionals->senha);
+                $profissionals->update();
+                return response()->json([
+                    'status' => true,
+                    'message' => 'senha redefinida.'
+                ]);
+            }
+    
+            return response()->json([
+                'status' => false,
+                'message' => 'não foi possivel alterar a senha'
+            ]);
+        }
+    
 
 }

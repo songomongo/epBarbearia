@@ -28,6 +28,8 @@ Route::get('servicoPesquisarPor/{id}', [ServicoController::class, 'pesquisarPorI
 Route::get('servicoExportar/csv', [ServicoController::class, 'exportarCsv']);
 
 
+
+
 //cliente
 Route::post('cadastro',[ClienteController::class,'store']);
 Route::get('cliente/retornarTodos',[ClienteController::class, 'retornarTodos']);
@@ -40,6 +42,8 @@ Route::put('atualizar', [ClienteController::class, 'update']);
 Route::post('esqueciSenha',[ClienteController::class, 'esqueciSenha']);
 Route::get('pesquisarPor/{id}', [ClienteController::class, 'pesquisarPorId']);
 Route::get('clienteExportar/csv', [ClienteController::class, 'exportarCsv']);
+Route::post('esqueciSenhaCliente', [ClienteController::class, 'esqueciSenhaCliente']);
+
 
 //profissional
 Route::post('cadastroProfissional',[ProfissionalController::class,'store']);
@@ -52,6 +56,8 @@ Route::delete('excluirProfissional/{id}',[ProfissionalController::class, 'exclui
 Route::put('atualizarProfissional', [ProfissionalController::class, 'update']);
 Route::get('profissionalPesquisarPor/{id}', [ProfissionalController::class, 'pesquisarPorId']);
 Route::get('profissionalExportar/csv', [ProfissionalController::class, 'exportarCsv']);
+Route::post('esqueciSenhaProfissional', [ProfissionalController::class, 'esqueciSenha']);
+
 
 //agenda
 Route::post('cadastroAgenda', [agendaController::class, 'store']);

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\ServicoFormRequest;
 use App\Models\servico;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Response;
 
 class ServicoController extends Controller
@@ -164,4 +165,5 @@ class ServicoController extends Controller
         return Response::download(public_path() . '/storage/' . $nomeArquivo)
             ->deleteFileAfterSend(true);
     }
+
 }

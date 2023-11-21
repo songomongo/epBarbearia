@@ -262,4 +262,23 @@ class ClienteController extends Controller
     
     }
 
+    public function esqueciSenhaCliente(Request $request){
+        $cliente = clientes::where('cpf', $request->cpf)->where('email', $request->email)->first();
+
+        if (isset($cliente)) {
+            $cliente->senha = Hash::make($cliente->senha);
+            $cliente->update();
+            return response()->json([
+                'status' => true,
+                'message' => 'senha redefinida.'
+            ]);
+        }
+
+        return response()->json([
+            'status' => false,
+            'message' => 'não foi possivel alterar a senha'
+        ]);
+    }
 }
+
+
