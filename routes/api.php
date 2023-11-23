@@ -37,7 +37,7 @@ Route::post('procurarN',[ClienteController::class, 'pesquisarPorNome']);
 Route::post('procurarC',[ClienteController::class, 'pesquisarPorCpf']);
 Route::post('procurarCE',[ClienteController::class, 'pesquisarPorCelular']);
 Route::post('procurarE',[ClienteController::class, 'pesquisarPorEmail']);
-Route::delete('excluir/{id}',[ClienteController::class, 'excluir']);
+Route::delete('excluir/cliente/{id}',[ClienteController::class, 'excluir']);
 Route::put('atualizar', [ClienteController::class, 'update']);
 Route::post('esqueciSenha',[ClienteController::class, 'esqueciSenha']);
 Route::get('pesquisarPor/{id}', [ClienteController::class, 'pesquisarPorId']);
