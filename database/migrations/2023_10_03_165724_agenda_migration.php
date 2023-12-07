@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->bigInteger('profissional_id')->nullable(false);
             $table->bigInteger('cliente_id')->nullable();
-            $table->bigInteger('servico_id')->  nullable();
+            $table->bigInteger('servico_id')->nullable();
             $table->dateTime('data_hora')->nullable(false);
             $table->string('tipo_pagamento', 20)->nullable();
             $table->decimal('valor')->nullable();

@@ -165,5 +165,4 @@ class ServicoController extends Controller
         return Response::download(public_path() . '/storage/' . $nomeArquivo)
             ->deleteFileAfterSend(true);
     }
-
 }

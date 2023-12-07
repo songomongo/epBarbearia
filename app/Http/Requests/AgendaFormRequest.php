@@ -26,31 +26,33 @@ class AgendaFormRequest extends FormRequest
         return [
             'profissional_id' => 'required',
             'cliente_id' => '',
-            'servico_id'=> '',
-            'data_hora'=>'required|date',
-            'tipo_pagamento'=>'|max:20|min:3',
-            'valor'=>'decimal:2',
-            
-           
+            'servico_id' => '',
+            'data_hora' => 'required|date',
+            'tipo_pagamento' => '|max:20|min:3',
+            'valor' => 'decimal:2',
+
+
         ];
     }
 
-    public function failedValidation (Validator $validator){
+    public function failedValidation(Validator $validator)
+    {
         throw new HttpResponseException(response()->json([
             'sucess' => false,
             'error' => $validator->errors()
         ]));
     }
 
-    public Function messages(){
+    public function messages()
+    {
         return [
-            'profissional_id.required'=> 'O campo profissional é obrigatorio',
-            'data_hora.required' =>'cliente obrigatoria',
+            'profissional_id.required' => 'O campo profissional é obrigatorio',
+            'data_hora.required' => 'cliente obrigatoria',
             'data_hora.date' => 'Formato invalido',
             'tipo_pagamento.max' => 'o campo nome deve conter no maximo 20 caracteres',
             'tipo_pagamento.min' => 'o campo nome dever conter no minimo 3 caracteres',
-           'valor.decimal:2'=> 'formato invalido'
-           
+            'valor.decimal:2' => 'formato invalido'
+
         ];
-   }
+    }
 }

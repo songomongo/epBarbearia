@@ -14,8 +14,6 @@ class servico extends Model
         'descricao',
         'duracao',
         'preco',
-        
-    ];
-    
 
+    ];
 }

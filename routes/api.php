@@ -17,58 +17,48 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "api" middleware group. Make something great!
 |
 */
+
+
 //servico
-Route::post('store',[ServicoController::class,'store']);
-Route::get('servico/retornarTodos',[ServicoController::class, 'retornarTodos']);
-Route::post('nome',[ServicoController::class, 'pesquisarPorNome']);
-Route::post('descricao',[ServicoController::class, 'pesquisarPorDescricao']);
-Route::delete('delete/{id}',[ServicoController::class, 'excluir']);
-Route::put('update', [ServicoController::class, 'update']);
-Route::get('servicoPesquisarPor/{id}', [ServicoController::class, 'pesquisarPorId']);
-Route::get('servicoExportar/csv', [ServicoController::class, 'exportarCsv']);
-
-
-
+Route::post('servico/store', [ServicoController::class, 'store']);
+Route::get('servico/retornarTodos', [ServicoController::class, 'retornarTodos']);
+Route::post('servico/procurarNome', [ServicoController::class, 'pesquisarPorNome']);
+Route::post('servico/procurarDescricao', [ServicoController::class, 'pesquisarPorDescricao']);
+Route::delete('servuico/delete/{id}', [ServicoController::class, 'excluir']);
+Route::put('servico/update', [ServicoController::class, 'update']);
+Route::get('servico/pesquisarPor/{id}', [ServicoController::class, 'pesquisarPorId']);
+Route::get('servico/exportar/csv', [ServicoController::class, 'exportarCsv']);
 
 //cliente
-Route::post('cadastro',[ClienteController::class,'store']);
-Route::get('cliente/retornarTodos',[ClienteController::class, 'retornarTodos']);
-Route::post('procurarN',[ClienteController::class, 'pesquisarPorNome']);
-Route::post('procurarC',[ClienteController::class, 'pesquisarPorCpf']);
-Route::post('procurarCE',[ClienteController::class, 'pesquisarPorCelular']);
-Route::post('procurarE',[ClienteController::class, 'pesquisarPorEmail']);
-Route::delete('excluir/cliente/{id}',[ClienteController::class, 'excluir']);
-Route::put('atualizar', [ClienteController::class, 'update']);
-Route::post('esqueciSenha',[ClienteController::class, 'esqueciSenha']);
-Route::get('pesquisarPor/{id}', [ClienteController::class, 'pesquisarPorId']);
-Route::get('clienteExportar/csv', [ClienteController::class, 'exportarCsv']);
-Route::post('esqueciSenhaCliente', [ClienteController::class, 'esqueciSenhaCliente']);
-
+Route::post('cliente/cadastro', [ClienteController::class, 'store']);
+Route::get('cliente/retornarTodos', [ClienteController::class, 'retornarTodos']);
+Route::post('cliente/procurarNome', [ClienteController::class, 'pesquisarPorNome']);
+Route::post('cliente/procurarCpf', [ClienteController::class, 'pesquisarPorCpf']);
+Route::post('cliente/procurarCelular', [ClienteController::class, 'pesquisarPorCelular']);
+Route::post('cliente/procurarEmail', [ClienteController::class, 'pesquisarPorEmail']);
+Route::delete('excluir/cliente/{id}', [ClienteController::class, 'excluir']);
+Route::put('cliente/atualizar', [ClienteController::class, 'update']);
+Route::post('cliente/esqueciSenha', [ClienteController::class, 'esqueciSenha']);
+Route::get('cliente/pesquisarPor/{id}', [ClienteController::class, 'pesquisarPorId']);
+Route::get('cliente/Exportar/csv', [ClienteController::class, 'exportarCsv']);
+Route::post('cliente/esqueciSenha', [ClienteController::class, 'esqueciSenhaCliente']);
 
 //profissional
-Route::post('cadastroProfissional',[ProfissionalController::class,'store']);
-Route::get('profissional/retornarTodos',[ProfissionalController::class, 'retornarTodos']);
-Route::post('procurarNProfissional',[ProfissionalController::class, 'pesquisarPorNome']);
-Route::post('procurarCProfissional',[ProfissionalController::class, 'pesquisarPorCpf']);
-Route::post('procurarCEProfissional',[ProfissionalController::class, 'pesquisarPorCelular']);
-Route::post('procurarEProfissional',[ProfissionalController::class, 'pesquisarPorEmail']);
-Route::delete('excluirProfissional/{id}',[ProfissionalController::class, 'excluir']);
-Route::put('atualizarProfissional', [ProfissionalController::class, 'update']);
-Route::get('profissionalPesquisarPor/{id}', [ProfissionalController::class, 'pesquisarPorId']);
-Route::get('profissionalExportar/csv', [ProfissionalController::class, 'exportarCsv']);
-Route::post('esqueciSenhaProfissional', [ProfissionalController::class, 'esqueciSenha']);
-
+Route::post('profissional/cadastro', [ProfissionalController::class, 'store']);
+Route::get('profissional/retornarTodos', [ProfissionalController::class, 'retornarTodos']);
+Route::post('profissional/procurarNome', [ProfissionalController::class, 'pesquisarPorNome']);
+Route::post('profissional/procurarCpf', [ProfissionalController::class, 'pesquisarPorCpf']);
+Route::post('profissional/procurarCelular', [ProfissionalController::class, 'pesquisarPorCelular']);
+Route::post('profissional/procurarEmail', [ProfissionalController::class, 'pesquisarPorEmail']);
+Route::delete('excluirProfissional/{id}', [ProfissionalController::class, 'excluir']);
+Route::put('profissional/atualizar', [ProfissionalController::class, 'update']);
+Route::get('profissional/pesquisarPor/{id}', [ProfissionalController::class, 'pesquisarPorId']);
+Route::get('profissional/Exportar/csv', [ProfissionalController::class, 'exportarCsv']);
+Route::post('profissional/esqueciSenha', [ProfissionalController::class, 'esqueciSenha']);
 
 //agenda
 Route::post('cadastroAgenda', [agendaController::class, 'store']);
-Route::post('procurarAgenda',[agendaController::class, 'pesquisarPorAgenda']);
-Route::delete('excluirAgenda/{id}',[agendaController::class, 'excluir']);
+Route::post('procurarAgenda', [agendaController::class, 'pesquisarPorAgenda']);
+Route::delete('excluirAgenda/{id}', [agendaController::class, 'excluir']);
 Route::put('atualizarAgenda', [agendaController::class, 'update']);
-Route::get('retornarTodosAgenda',[agendaController::class, 'retornarTodos']);
-
-
-
-
-
-
-
+Route::get('retornarTodosAgenda', [agendaController::class, 'retornarTodos']);

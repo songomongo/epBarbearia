@@ -18,6 +18,3 @@ class Agenda extends Model
         'valor',
     ];
 }
-
-
-

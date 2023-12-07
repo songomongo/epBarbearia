@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('nome', 80)->unique()->nullable(false);
             $table->string('descricao', 200)->nullable(false);
-            $table->integer('duracao' )->nullable(false);
+            $table->integer('duracao')->nullable(false);
             $table->decimal('preco')->decimal()->nullable(false);
             $table->timestamps();
         });

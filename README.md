@@ -15,6 +15,13 @@ Certifique-se de ter os seguintes requisitos atendidos antes de começar a traba
 - Git instalado
 - Editor de código de sua preferência
 
+## Readmes das funções
+
+1. [Readme Clientes](ClienteReadme.md)
+2. [Readme Profissionais](ProfissionaisReadme.md)
+3. [Readme Serviços](ServicoReadme.md)
+4. [Readme Agenda](AgendaReadme.md)
+
 ## Como utilizar este repositório
 
 1. Clone este repositório para o seu ambiente de desenvolvimento local utilizando o comando:
@@ -65,4 +72,4 @@ emillybeatrizamoroso@Gmail.com
 
 **Aviso**: Certifique-se de substituir "username" no link de clonagem e "email..." na seção de contato pelos valores correspondentes do seu próprio usuário do GitHub e endereço de e-mail.
 
-Este é apenas um modelo básico de README.md, você pode adaptar e melhorar conforme suas necessidades específicas de projeto. Certifique-se de incluir informações importantes sobre como configurar, executar e testar os exercícios, bem como qualquer outra documentação relevante para tornar o repositório mais amigável e útil para outros desenvolvedores.
+

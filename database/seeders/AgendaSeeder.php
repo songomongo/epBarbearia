@@ -17,14 +17,13 @@ class AgendaSeeder extends Seeder
             Agenda::create([
                 'profissional_id' => $i,
                 'cliente_id' => $i,
-                'servico_id'=> $i,
-                'data_hora'=>  "2024-04-04-14:45:20",
-                'tipo_pagamento' => 'tipo'. $i,
+                'servico_id' => $i,
+                'data_hora' =>  "2024-04-04-14:45:20",
+                'tipo_pagamento' => 'tipo' . $i,
                 'valor' => '20.00',
-               
+
 
             ]);
         }
-       
     }
 }

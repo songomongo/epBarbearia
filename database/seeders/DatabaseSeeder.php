@@ -17,6 +17,6 @@ class DatabaseSeeder extends Seeder
             ProfissionalSeeder::class,
             ServicoSeeder::class,
             AgendaSeeder::class
-          ]);
+        ]);
     }
 }
