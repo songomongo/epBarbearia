@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdmController;
 use App\Http\Controllers\agendaController;
 use App\Http\Controllers\ClienteController;
 use App\Http\Controllers\ProfissionalController;
@@ -62,3 +63,45 @@ Route::post('procurarAgenda', [agendaController::class, 'pesquisarPorAgenda']);
 Route::delete('excluirAgenda/{id}', [agendaController::class, 'excluir']);
 Route::put('atualizarAgenda', [agendaController::class, 'update']);
 Route::get('retornarTodosAgenda', [agendaController::class, 'retornarTodos']);
+
+//adm
+Route::post('adm/servico/store', [ServicoController::class, 'store']);
+Route::put('adm/servico/update', [ServicoController::class, 'update']);
+Route::delete('adm/servuico/delete/{id}', [ServicoController::class, 'excluir']);
+
+Route::post('adm/cliente/cadastro', [ClienteController::class, 'store']);
+Route::post('adm/cliente/esqueciSenha', [ClienteController::class, 'esqueciSenhaCliente']);
+Route::put('adm/cliente/atualizar', [ClienteController::class, 'update']);
+Route::delete('adm/excluir/cliente/{id}', [ClienteController::class, 'excluir']);
+
+Route::post('adm/profissional/cadastro', [ProfissionalController::class, 'store']);
+Route::post('adm/profissional/esqueciSenha', [ProfissionalController::class, 'esqueciSenha']);
+Route::put('adm/profissional/atualizar', [ProfissionalController::class, 'update']);
+Route::delete('excluirProfissional/{id}', [ProfissionalController::class, 'excluir']);
+
+Route::post('adm/cadastroAgenda', [agendaController::class, 'store']);
+Route::delete('adm/excluirAgenda/{id}', [agendaController::class, 'excluir']);
+Route::put('adm/atualizarAgenda', [agendaController::class, 'update']);
+
+//ADM
+Route::post('adm/cadastro', [AdmController::class, 'store']);
+Route::get('adm/retornarTodos', [AdmController::class, 'retornarTodos']);
+Route::post('adm/procurarNome', [AdmController::class, 'pesquisarPorNome']);
+Route::post('adm/procurarCpf', [AdmController::class, 'pesquisarPorCpf']);
+Route::post('adm/procurarCelular', [AdmController::class, 'pesquisarPorCelular']);
+Route::post('adm/procurarEmail', [AdmController::class, 'pesquisarPorEmail']);
+Route::delete('excluir/adm/{id}', [AdmController::class, 'excluir']);
+Route::put('adm/atualizar', [AdmController::class, 'update']);
+Route::get('adm/pesquisarPor/{id}', [AdmController::class, 'pesquisarPorId']);
+Route::get('adm/Exportar/csv', [AdmController::class, 'exportarCsv']);
+Route::post('adm/esqueciSenha', [AdmController::class, 'esqueciSenhaAdm']);
+
+//ProfissionalCadastro
+Route::post('profissional/cliente/cadastro', [ClienteController::class, 'store']);
+Route::post('profissional/cliente/esqueciSenha', [ClienteController::class, 'esqueciSenhaCliente']);
+Route::put('profissional/cliente/atualizar', [ClienteController::class, 'update']);
+Route::delete('profissional/excluir/cliente/{id}', [ClienteController::class, 'excluir']);
+
+Route::post('profissional/cadastroAgenda', [agendaController::class, 'store']);
+Route::delete('profissional/excluirAgenda/{id}', [agendaController::class, 'excluir']);
+Route::put('profissional/atualizarAgenda', [agendaController::class, 'update']);
