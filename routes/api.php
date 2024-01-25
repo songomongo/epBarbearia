@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdmController;
 use App\Http\Controllers\agendaController;
 use App\Http\Controllers\ClienteController;
 use App\Http\Controllers\ProfissionalController;
@@ -62,3 +63,30 @@ Route::post('procurarAgenda', [agendaController::class, 'pesquisarPorAgenda']);
 Route::delete('excluirAgenda/{id}', [agendaController::class, 'excluir']);
 Route::put('atualizarAgenda', [agendaController::class, 'update']);
 Route::get('retornarTodosAgenda', [agendaController::class, 'retornarTodos']);
+
+//adm
+Route::post('adm/servico/store', [ServicoController::class, 'store']);
+Route::put('adm/servico/update', [ServicoController::class, 'update']);
+Route::delete('adm/servuico/delete/{id}', [ServicoController::class, 'excluir']);
+
+Route::post('adm/cliente/cadastro', [ClienteController::class, 'store']);
+Route::delete('adm/excluir/cliente/{id}', [ClienteController::class, 'excluir']);
+Route::put('adm/cliente/atualizar', [ClienteController::class, 'update']);
+Route::post('adm/cliente/esqueciSenha', [ClienteController::class, 'esqueciSenhaCliente']);
+
+Route::post('adm/profissional/cadastro', [ProfissionalController::class, 'store']);
+Route::delete('adm/excluirProfissional/{id}', [ProfissionalController::class, 'excluir']);
+Route::put('adm/profissional/atualizar', [ProfissionalController::class, 'update']);
+Route::post('adm/profissional/esqueciSenha', [ProfissionalController::class, 'esqueciSenha']);
+
+
+//adm 2
+Route::post('adm/Cadastro',[AdmController::class, 'CadastroAdm']);
+Route::get('adm/retornarTodos', [AdmController::class, 'retornarTodos']);
+Route::get('adm/pesquisarPor/{id}', [AdmController::class, 'pesquisarPorId']);
+Route::put('adm/atualizar', [AdmController::class, 'update']);
+Route::delete('excluir/adm/{id}', [AdmController::class, 'excluir']);
+Route::post('adm/esqueciSenha', [AdmController::class, 'esqueciSenha']);
+
+
+
