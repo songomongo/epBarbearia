@@ -11,5 +11,7 @@ class Pagamento extends Model
 
     protected $fillable = [
         'nome_pagamento',
+        'taxa_pagamento',
+        'status_pagamento'
     ];
 }

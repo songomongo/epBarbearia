@@ -84,7 +84,7 @@ Route::delete('adm/excluirAgenda/{id}', [agendaController::class, 'excluir']);
 Route::put('adm/atualizarAgenda', [agendaController::class, 'update']);
 
 //ADM
-Route::post('adm/cadastro', [AdmController::class, 'store']);
+Route::post('adm/cadastro', [AdmController::class, 'cadastroAdm']);
 Route::get('adm/retornarTodos', [AdmController::class, 'retornarTodos']);
 Route::post('adm/procurarNome', [AdmController::class, 'pesquisarPorNome']);
 Route::post('adm/procurarCpf', [AdmController::class, 'pesquisarPorCpf']);
