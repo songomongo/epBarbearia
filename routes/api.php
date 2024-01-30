@@ -105,3 +105,11 @@ Route::delete('profissional/excluir/cliente/{id}', [ClienteController::class, 'e
 Route::post('profissional/cadastroAgenda', [agendaController::class, 'store']);
 Route::delete('profissional/excluirAgenda/{id}', [agendaController::class, 'excluir']);
 Route::put('profissional/atualizarAgenda', [agendaController::class, 'update']);
+Route::delete('adm/excluir/cliente/{id}', [ClienteController::class, 'excluir']);
+Route::put('adm/cliente/atualizar', [ClienteController::class, 'update']);
+Route::post('adm/cliente/esqueciSenha', [ClienteController::class, 'esqueciSenhaCliente']);
+
+Route::post('adm/profissional/cadastro', [ProfissionalController::class, 'store']);
+Route::delete('adm/excluirProfissional/{id}', [ProfissionalController::class, 'excluir']);
+Route::put('adm/profissional/atualizar', [ProfissionalController::class, 'update']);
+Route::post('adm/profissional/esqueciSenha', [ProfissionalController::class, 'esqueciSenha']);
