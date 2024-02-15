@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\ClientesFormRequest;
 use App\Models\clientes;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Response;
 
@@ -61,6 +62,56 @@ class ClienteController extends Controller
             'status' => true,
             'data' => $clientes
         ]);
+    }
+
+
+    public function login(Request $request){
+
+        try {
+
+    if(Auth::guard('adms')->attempt([
+        'nome' => $request->nome,
+        'celular' => $request->celular,
+        'email' => $request->email,
+        'cpf' => $request->cpf,
+        'dataNascimento' => $request->dataNascimento,
+        'cidade' => $request->cidade,
+        'estado' => $request->estado,
+        'pais' => $request->pais,
+        'rua' => $request->rua,
+        'numero' => $request->numero,
+        'bairro' => $request->bairro,
+        'cep' => $request->cep,
+        'complemento' => $request->complemento,
+        'senha' => Hash::make($request->senha),
+        'salario' => $request->salario,
+        s
+    ])) {
+
+         $user = Auth::guard('adms')->user();     
+         
+         $token = $user->createToken(
+            $request->server('HTTP_USER_AGENT',
+            ['admins']))->plainTextToken;
+
+            return response()->json([
+                'status' => true,
+                'message' => 'login efetuado com sucesso',
+                'token' => $token
+            ]);
+    }else {
+        return response()->json([
+            'status' => false,
+            'message' => 'credenciais incorretas'
+        ]);
+    }
+
+        } catch (\Throwable $th) {
+            return response()->json([
+                'status' => false,
+                'message' => $th->getMessage()
+            ], 500);
+        }
     }
 
     public function pesquisarPorNome(Request $request)
